@@ -1,9 +1,31 @@
-import { useGetPlayerQuery} from "../../app/puppySlice";
+import { useGetPlayerQuery, useAddPlayerMutation} from "../../app/puppySlice";
+import {useState} from 'react'
+import { useDispatch } from "react-redux";
 import React from "react";
 
 export default function Players() {
 
     const {data: players, isLoading} = useGetPlayerQuery();
+    const [addPlayer] = useAddPlayerMutation();
+
+    const [puppyName, setPuppyName] = useState("");
+    const [puppyLink, setPuppyLink] = useState("");
+    const [puppyBreed, setPuppyBreed] = useState("");
+    const [puppyStatus, setPuppyStatus] = useState("");
+
+    const dispatch = useDispatch();
+
+    const addPuppy = event => {
+        event.preventDefault();
+        dispatch(addPlayer({
+            id: 9999,
+            name: puppyName,
+            breed: puppyBreed,
+            status: puppyStatus,
+            imageUrl: puppyLink,
+        }))
+        console.log(puppyName);
+    };
     
     return (
         <> 
@@ -24,11 +46,15 @@ export default function Players() {
             </div>
             }
             <form>
-                <input type="text"></input>
-                <input type="text"></input>
-                <input type="text"></input>
-                <input type="text"></input>
-                <button>Submit</button>
+                <label>Name</label>
+                <input value={puppyName} onChange={(e) => setPuppyName(e.target.value)} type="text"></input>
+                <label>Breed</label>
+                <input value={puppyBreed} onChange={(e) => setPuppyBreed(e.target.value)} type="text"></input>
+                <label>Position</label>
+                <input value={puppyStatus} onChange={(e) => setPuppyStatus(e.target.value)} type="text"></input>
+                <label>Image Link</label>
+                <input vaue={puppyLink} onChange={(e) => setPuppyLink(e.target.value)} type="text"></input>
+                <button onSubmit={addPuppy}>Submit</button>
             </form>
             </>
      )

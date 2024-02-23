@@ -11,7 +11,7 @@ const api = puppyBowlApi.injectEndpoints({
             invalidatesTags: ["players"]
         }),
         addPlayer: builder.mutation({
-            mutation: player => ({
+            query: player => ({
                 url: "/players",
                 method: "POST",
                 body: player
@@ -19,7 +19,7 @@ const api = puppyBowlApi.injectEndpoints({
             invalidatesTags: ["players"]
         }),
         deletePlayer: builder.mutation({
-            mutation: id => ({
+            query: id => ({
                 url: "/players/" + id,
                 method: "DELETE"
             }),
