@@ -6,7 +6,7 @@ import React from "react";
 export default function Players() {
 
     const {data: players, isLoading} = useGetPlayerQuery();
-    const [addPlayer] = useAddPlayerMutation();
+    const [addPlayer, {loading, isError}] = useAddPlayerMutation();
 
     const [puppyName, setPuppyName] = useState("");
     const [puppyLink, setPuppyLink] = useState("");
@@ -17,14 +17,12 @@ export default function Players() {
 
     const addPuppy = event => {
         event.preventDefault();
-        dispatch(addPlayer({
-            id: 9999,
+        addPlayer({
             name: puppyName,
             breed: puppyBreed,
             status: puppyStatus,
             imageUrl: puppyLink,
-        }))
-        console.log(puppyName);
+        })
     };
     
     return (
@@ -45,7 +43,7 @@ export default function Players() {
                 ))}
             </div>
             }
-            <form>
+            <form onSubmit={addPuppy}>
                 <label>Name</label>
                 <input value={puppyName} onChange={(e) => setPuppyName(e.target.value)} type="text"></input>
                 <label>Breed</label>
@@ -54,7 +52,7 @@ export default function Players() {
                 <input value={puppyStatus} onChange={(e) => setPuppyStatus(e.target.value)} type="text"></input>
                 <label>Image Link</label>
                 <input vaue={puppyLink} onChange={(e) => setPuppyLink(e.target.value)} type="text"></input>
-                <button onSubmit={addPuppy}>Submit</button>
+                <button>Submit</button>
             </form>
             </>
      )
