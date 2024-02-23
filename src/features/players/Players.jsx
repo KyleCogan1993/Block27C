@@ -23,6 +23,13 @@ export default function Players() {
                 ))}
             </div>
             }
+            <form>
+                <input type="text"></input>
+                <input type="text"></input>
+                <input type="text"></input>
+                <input type="text"></input>
+                <button>Submit</button>
+            </form>
             </>
      )
 }
