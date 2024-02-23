@@ -27,6 +27,17 @@ export default function Players() {
     
     return (
         <> 
+            <form className="add-puppy-form" onSubmit={addPuppy}>
+                <label>Name</label>
+                <input value={puppyName} onChange={(e) => setPuppyName(e.target.value)} type="text"></input>
+                <label>Breed</label>
+                <input value={puppyBreed} onChange={(e) => setPuppyBreed(e.target.value)} type="text"></input>
+                <label>Position</label>
+                <input value={puppyStatus} onChange={(e) => setPuppyStatus(e.target.value)} type="text"></input>
+                <label>Image Link</label>
+                <input vaue={puppyLink} onChange={(e) => setPuppyLink(e.target.value)} type="text"></input>
+                <button>Submit</button>
+            </form>
             {isLoading ? <p>Loading...</p> : 
             <div className="players">
                 {players.data.players.map(player => (
@@ -43,17 +54,6 @@ export default function Players() {
                 ))}
             </div>
             }
-            <form onSubmit={addPuppy}>
-                <label>Name</label>
-                <input value={puppyName} onChange={(e) => setPuppyName(e.target.value)} type="text"></input>
-                <label>Breed</label>
-                <input value={puppyBreed} onChange={(e) => setPuppyBreed(e.target.value)} type="text"></input>
-                <label>Position</label>
-                <input value={puppyStatus} onChange={(e) => setPuppyStatus(e.target.value)} type="text"></input>
-                <label>Image Link</label>
-                <input vaue={puppyLink} onChange={(e) => setPuppyLink(e.target.value)} type="text"></input>
-                <button>Submit</button>
-            </form>
             </>
      )
 }

@@ -60,3 +60,9 @@ body {
   font-size: 16px; /* The size of the details text. */
   text-align: center; /* The details text is centered. */
 }
+
+.add-puppy-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
